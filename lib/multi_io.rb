@@ -1,41 +1,35 @@
-# MultiIO aims to be an IO object that is the concatenation of other IO
-# objects.
-#
-# This is useful, for example, when one wants to have an IO object that
-# duplicates its writes to STDOUT, a file and maybe a socket too.
-#
-# NOTE: Not all methods from IO are implemented yet. Feel free to submit
-# a patch if you need something that's missing.
 class MultiIO
-  def initialize(*io)
-    @io = io
+  # targets is one or more IO objects that operations will be forwarded to
+  def initialize(*targets)
+    @targets = targets
   end
 
   def close
-    @io.each { |io| io.close }
+    @targets.each(&:close)
     nil
   end
 
+  # Returns the first target
   def flush
-    @io.map { |io| io.flush }.first
+    @targets.map(&:flush).first
   end
 
   def puts(*args)
-    @io.each { |io| io.puts(*args) }
+    @targets.each { |io| io.puts(*args) }
     nil
   end
 
   def read(*args)
-    @io.map { |io| io.read(*args) }
+    @targets.map { |io| io.read(*args) }
   end
 
   def rewind
-    @io.each { |io| io.rewind }
+    @targets.each(&:rewind)
     0
   end
 
   # Returns the sum of the bytes written
   def write(string)
-    @io.map { |io| io.write(string) }.inject(:+)
+    @targets.map { |io| io.write(string) }.inject(:+)
   end
 end
