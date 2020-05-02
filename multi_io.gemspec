@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "multi_io"
-  s.version     = "0.0.1.pre"
+  s.version     = "0.0.1.pre2"
   s.summary     = "An IO object that is the concatenation of other IO objects"
   s.author      = "Agis Anastasopoulos"
   s.email       = "a@xz0.org"
