@@ -10,8 +10,8 @@ regular IO objects like files, sockets, stdout/stderr streams etc.
 Depending on the method called, it forwards operations to the underlying
 objects.
 
-This is useful, for example, when one wants to duplicate writes to STDOUT, a
-file and a socket. Another use case is for when one wants to read from those.
+This is useful, for example, when one wants to duplicate writes to multiple destinations (e.g. standard output, a
+file and a socket). Similarly, it can be used to read the concatenation of multiple IO sources.
 
 
 Status
