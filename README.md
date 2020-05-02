@@ -10,8 +10,8 @@ regular IO objects like files, sockets, stdout/stderr streams etc.
 Depending on the method called, it forwards operations to the underlying
 objects.
 
-This is useful, for example, when one wants to duplicates writes to STDOUT, a
-file and a socket. Another use case is for when wants to read from those
+This is useful, for example, when one wants to duplicate writes to STDOUT, a
+file and a socket. Another use case is for when one wants to read from those.
 
 
 Status
@@ -44,7 +44,7 @@ Assuming we want to duplicate writes to a string buffer, stdout and a file:
 > str = StringIO.new
 > io = MultiIO.new(str, $stdout, File.new("foo", "w"))
 >
-> # write a message to all underlying IO objects (stdout is printed immediattely
+> # write a message to all underlying IO objects (stdout is printed immediately
 > # since it's attached to the terminal)
 > io.puts "bar"
 hi
