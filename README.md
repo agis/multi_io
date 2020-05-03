@@ -23,11 +23,12 @@ Assuming we want to duplicate writes to a string buffer, stdout and a file:
 > require "stringio"
 > str = StringIO.new
 > io = MultiIO.new(str, $stdout, File.new("foo", "w"))
->
+
 > # write a message to all underlying IO objects (stdout is printed immediately
 > # since it's attached to the terminal)
 > io.puts "bar"
-hi
+bar
+
 > io.flush
 > str.string # => "bar\n"
 > File.read("foo") # => "bar\n"
