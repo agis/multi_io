@@ -1,9 +1,10 @@
 multi_io
 ==============================================================================
 [![Gem Version](https://badge.fury.io/rb/multi_io.svg)](https://badge.fury.io/rb/multi_io)
+[![Build Status](https://travis-ci.org/agis/multi_io.svg?branch=master)](https://travis-ci.org/agis/multi_io)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-MultiIO is a Ruby [`IO`](https://ruby-doc.org/core-2.7.1/IO.html) object that
+`MultiIO` is a Ruby [`IO`](https://ruby-doc.org/core-2.7.1/IO.html) object that
 is composed of other IO objects. It is meant to be a drop-in replacement for
 regular IO objects like files, sockets, stdout/stderr streams etc.
 

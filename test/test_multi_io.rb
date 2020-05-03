@@ -1,7 +1,6 @@
 require "minitest/autorun"
 require "multi_io"
 require "tempfile"
-require "pry-byebug"
 require "socket"
 require "stringio"
 
@@ -32,13 +31,14 @@ class MultiIOTest < Minitest::Test
 
     io.close
 
+    # wait for the server to write to the buffer
+    tcp_server_thread.join
+
     exp = "yo\n"
 
-    targets.each do |_, actualfn|
-      assert_equal exp, actualfn.call
+    targets.each do |t, actualfn|
+      assert_equal exp, actualfn.call, t
     end
-
-    tcp_server_thread.join
   end
 
   def test_read
@@ -64,11 +64,12 @@ class MultiIOTest < Minitest::Test
 
     io.close
 
-    targets.each do |_, actualfn|
-      assert_equal msg, actualfn.call
-    end
-
+    # wait for the server to write to the buffer
     tcp_server_thread.join
+
+    targets.each do |t, actualfn|
+      assert_equal msg, actualfn.call, t
+    end
   end
 
   private

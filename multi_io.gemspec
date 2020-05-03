@@ -10,6 +10,5 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.add_development_dependency "minitest", "~> 5.14"
-  s.add_development_dependency "pry-byebug"
   s.add_development_dependency "rake"
 end
