@@ -31,13 +31,14 @@ class MultiIOTest < Minitest::Test
 
     io.close
 
+    # wait for the server to write to the buffer
+    tcp_server_thread.join
+
     exp = "yo\n"
 
     targets.each do |t, actualfn|
       assert_equal exp, actualfn.call, t
     end
-
-    tcp_server_thread.join
   end
 
   def test_read
@@ -63,11 +64,12 @@ class MultiIOTest < Minitest::Test
 
     io.close
 
+    # wait for the server to write to the buffer
+    tcp_server_thread.join
+
     targets.each do |t, actualfn|
       assert_equal msg, actualfn.call, t
     end
-
-    tcp_server_thread.join
   end
 
   private
