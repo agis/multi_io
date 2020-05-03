@@ -1,7 +1,6 @@
 require "minitest/autorun"
 require "multi_io"
 require "tempfile"
-require "pry-byebug"
 require "socket"
 require "stringio"
 
