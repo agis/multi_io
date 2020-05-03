@@ -33,8 +33,8 @@ class MultiIOTest < Minitest::Test
 
     exp = "yo\n"
 
-    targets.each do |_, actualfn|
-      assert_equal exp, actualfn.call
+    targets.each do |t, actualfn|
+      assert_equal exp, actualfn.call, t
     end
 
     tcp_server_thread.join
@@ -63,8 +63,8 @@ class MultiIOTest < Minitest::Test
 
     io.close
 
-    targets.each do |_, actualfn|
-      assert_equal msg, actualfn.call
+    targets.each do |t, actualfn|
+      assert_equal msg, actualfn.call, t
     end
 
     tcp_server_thread.join
